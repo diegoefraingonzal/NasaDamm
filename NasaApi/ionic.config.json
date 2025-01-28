@@ -1,0 +1,7 @@
+{
+  "name": "NasaApi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
