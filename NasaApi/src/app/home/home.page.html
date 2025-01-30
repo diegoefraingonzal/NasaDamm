@@ -1,7 +1,9 @@
+
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Nasa
+      NASA Image of the Day
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,12 +15,21 @@
     </ion-toolbar>
   </ion-header>
 
-  
   <ion-content class="ion-padding">
 
+    <!-- Input para elegir la fecha -->
+    <ion-item>
+      <ion-label>Date:</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="selectedDate"></ion-datetime>
+    </ion-item>
+
+    <!-- Botón para cargar imagen según la fecha elegida -->
+    <ion-button expand="block" (click)="loadImageOfTheDay()">Load Image</ion-button>
+
+    <!-- Mostrar la imagen de la NASA -->
     <ng-container *ngIf="imageData; else loading">
       <ion-card>
-        <img [src]="imageData.url" alt="Nasa Image">
+        <img [src]="imageData.url" alt="NASA Image">
         <ion-card-header>
           <ion-card-title>{{imageData.title}}</ion-card-title>
           <ion-card-subtitle>{{imageData.date}}</ion-card-subtitle>
@@ -26,12 +37,15 @@
         <ion-card-content>
           {{imageData.explanation}}
         </ion-card-content>
-        </ion-card>
+      </ion-card>
     </ng-container>
 
+    <!-- Spinner de carga -->
     <ng-template #loading>
       <ion-spinner name="crescent"></ion-spinner>
     </ng-template>
-  </ion-content>
 
+  </ion-content>
 </ion-content>
+
+

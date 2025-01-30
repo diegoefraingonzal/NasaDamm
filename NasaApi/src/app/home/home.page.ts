@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { NasaService } from '../nasa.service';
 
@@ -8,11 +9,16 @@ import { NasaService } from '../nasa.service';
   standalone: false,
 })
 export class HomePage {
-imageData: any;
-  constructor(private nasaService : NasaService) {}
-ngOnInit() {
-  this.nasaService.getImageOfTheDay().subscribe((data) => {
-    this.imageData = data;
-  });
-}
+
+  selectedDate: string = ''; // Inicialización para evitar el error
+  imageData: any;
+
+  constructor(private nasaService: NasaService) {}
+
+  loadImageOfTheDay() {
+    const formattedDate = this.selectedDate.split('T')[0]; // Ajustar para obtener solo la fecha
+    this.nasaService.getImageOfTheDay(formattedDate).subscribe((data) => {
+      this.imageData = data;
+    });
+  }
 }
